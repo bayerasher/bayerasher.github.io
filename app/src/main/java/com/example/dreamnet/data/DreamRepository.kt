@@ -53,6 +53,14 @@ class DreamRepository(
 
         if (localMatch != null && localMatch.meanings.isNotEmpty()) {
             Log.d("DreamNet", "LOCAL CONCEPT FOUND: ${localMatch.entry.word}. Triggering AI Analysis...")
+            
+            // Check if local meanings are synthetic placeholders
+            val isSynthetic = localMatch.meanings.any { it.meaning.contains("синтетическая", true) || it.meaning.contains("synthetic", true) }
+            
+            if (isSynthetic) {
+                Log.d("DreamNet", "LOCAL CONTENT IS SYNTHETIC. Requesting High Quality AI Analysis...")
+            }
+
             val aiResponse = try {
                 generateFullAiInterpretation(query, language, listOf(localMatch))
             } catch (e: Exception) {
@@ -133,15 +141,15 @@ class DreamRepository(
         val normalized = normalizeWord(query)
         val qTrim = query.trim()
         
-        // Exact word (Room COLLATE NOCASE)
+        // 1. Exact match (Room COLLATE NOCASE)
         val exactEntry = dreamDao.getEntryByWord(qTrim, language)
         if (exactEntry != null) return exactEntry
 
-        // Variant match
+        // 2. Exact Variant match
         val variantMatch = dreamDao.findExactMatch(normalized, language)
         if (variantMatch != null) return variantMatch
 
-        // FTS Search
+        // 3. FTS Search (More flexible)
         if (normalized.length >= 2) {
             try {
                 val ftsResults = dreamDao.searchFts("$normalized*", language)
@@ -153,7 +161,7 @@ class DreamRepository(
             } catch (e: Exception) { }
         }
 
-        // Fuzzy LIKE Search
+        // 4. Fuzzy LIKE Search
         try {
             val fuzzyResults = dreamDao.searchFuzzy(normalized, language)
             if (fuzzyResults.isNotEmpty()) {
@@ -184,23 +192,29 @@ class DreamRepository(
         localSymbols: List<DreamSearchResult>
     ): JSONObject? {
         val contextInfo = if (localSymbols.isNotEmpty()) {
-            "LOCAL KNOWLEDGE FOUND IN DB:\n" +
+            "LOCAL KNOWLEDGE FROM DATABASE (summarize it and enhance it):\n" +
             localSymbols.joinToString("\n") { symbol ->
                 val meanings = symbol.meanings.joinToString("; ") { it.meaning }
                 "${symbol.entry.word}: $meanings"
             }
-        } else "No exact local meanings found. Search your memory."
+        } else "No local meanings found. Provide a professional original analysis."
 
         val systemPrompt = """
-            You are 'DreamNet AI'. Expert bibliographer and dream analyst.
+            You are 'DreamNet AI', a professional dream analyst and expert on classic dreambooks.
             Language: $language.
             
-            GOAL: Analyze user's dream and provide classic dreambook views.
+            TASK: Analyze the user's dream and provide classic views for each requested dreambook.
             
-            INSTRUCTIONS:
-            1. Create a list of interpretations from: Miller, Vanga, Nostradamus, Tsvetkov, Ibn Sirin, Loff, Hasse, Meneghetti, Esoteric.
-            2. Synthesize these into a master "interpretation" narrative.
-            3. Provide advice (adviceDo and adviceDont) and realStories (manifestations).
+            REQUIRED AUTHORS TO COVER (If local data for them is missing, use your expert knowledge of their work):
+            1. Miller (Густав Миллер)
+            2. Vanga (Ванга)
+            3. Nostradamus (Нострадамус)
+            4. Tsvetkov (Евгений Цветков)
+            5. Ibn Sirin (Ибн Сирин - Исламский сонник)
+            6. Loff (Дэвид Лофф)
+            7. Hasse (Мисс Хассе)
+            8. Meneghetti (Антонио Менегетти)
+            9. Esoteric (Эзотерический сонник)
             
             REQUIRED JSON FORMAT:
             {
@@ -209,54 +223,53 @@ class DreamRepository(
                 {"author": "Сонник Ванги", "meaning": "..."},
                 {"author": "Сонник Нострадамуса", "meaning": "..."},
                 {"author": "Сонник Цветкова", "meaning": "..."},
-                {"author": "Исламский сонник (Ибн Сирин)", "meaning": "..."},
+                {"author": "Исламский сонник", "meaning": "..."},
                 {"author": "Сонник Лоффа", "meaning": "..."},
                 {"author": "Сонник Хассе", "meaning": "..."},
                 {"author": "Сонник Менегетти", "meaning": "..."},
                 {"author": "Эзотерический сонник", "meaning": "..."}
               ],
-              "interpretation": "FULL combined psychological and symbolic analysis",
-              "adviceDo": "Advice on what to do",
-              "adviceDont": "Advice on what to avoid",
-              "realStories": "Real life manifestation examples"
+              "interpretation": "A deep psychological and narrative synthesis of the entire dream",
+              "adviceDo": "A concrete positive action the dreamer should take",
+              "adviceDont": "A warning about what to avoid",
+              "realStories": "1-2 brief examples of how this dream manifests in real life experience"
             }
             
-            Tone: Professional. STRICT JSON. NO MARKDOWN. ONLY THE JSON BLOCK.
+            RULES:
+            - DO NOT output "Synthetic phrasing" or "VERBATIM QUOTATION" disclaimers. 
+            - Use the authentic style of each author.
+            - Output ONLY the JSON block. No markdown markers.
             
             $contextInfo
             
             USER DREAM: "$query"
         """.trimIndent()
 
-        // Try Gemini keys
         for (key in geminiKeys) {
-            if (key.startsWith("sk-or-v1")) continue // Skip OpenRouter key in Gemini loop
-            
             try {
-                Log.d("DreamNet", "Attempting Gemini key starting with ${key.take(8)}...")
+                Log.d("DreamNet", "Attempting key: ${key.take(8)}...")
                 val model = GenerativeModel(modelName = "gemini-1.5-flash", apiKey = key)
                 val response = withTimeoutOrNull(25000) {
                     model.generateContent(systemPrompt).text?.trim()
                 }
 
                 if (response != null) {
-                    val extractedJson = extractJson(response)
-                    if (extractedJson != null) return extractedJson
+                    val extracted = extractJson(response)
+                    if (extracted != null) return extracted
                 }
             } catch (e: Exception) {
-                Log.e("DreamNet", "Gemini key failed: ${e.message}")
+                Log.e("DreamNet", "Key failed: ${e.message}")
             }
         }
 
-        // Try OpenRouter Fallback
+        // OpenRouter Fallback
         val orKey = BuildConfig.OPENROUTER_API_KEY
         if (orKey.isNotEmpty()) {
             try {
-                Log.d("DreamNet", "All Gemini failed. Attempting OpenRouter...")
                 val response = callOpenRouter(systemPrompt, orKey)
                 if (response != null) {
-                    val extractedJson = extractJson(response)
-                    if (extractedJson != null) return extractedJson
+                    val extracted = extractJson(response)
+                    if (extracted != null) return extracted
                 }
             } catch (e: Exception) {
                 Log.e("DreamNet", "OpenRouter failed: ${e.message}")
@@ -275,7 +288,7 @@ class DreamRepository(
                 return JSONObject(jsonStr)
             }
         } catch (e: Exception) {
-            Log.e("DreamNet", "JSON EXTRACTION FAILED", e)
+            Log.e("DreamNet", "JSON EXTRACTION ERROR", e)
         }
         return null
     }
@@ -302,10 +315,7 @@ class DreamRepository(
         return withContext(Dispatchers.IO) {
             try {
                 client.newCall(request).execute().use { response ->
-                    if (!response.isSuccessful) {
-                        Log.e("DreamNet", "OpenRouter HTTP Error: ${response.code}")
-                        return@withContext null
-                    }
+                    if (!response.isSuccessful) return@withContext null
                     val body = response.body?.string() ?: return@withContext null
                     JSONObject(body).getJSONArray("choices")
                         .getJSONObject(0)
@@ -313,7 +323,6 @@ class DreamRepository(
                         .getString("content")
                 }
             } catch (e: Exception) {
-                Log.e("DreamNet", "OpenRouter Network Error", e)
                 null
             }
         }
@@ -330,10 +339,10 @@ class DreamRepository(
 
     suspend fun prepopulateDatabase() {
         val count = dreamDao.getEntryCount()
-        Log.d("DreamNet", "Current DB entry count: $count")
+        Log.d("DreamNet", "DB Count: $count")
         
+        // INCREASE Threshold to ensure big databases are fully loaded
         if (count < 25000) { 
-            Log.d("DreamNet", "Importing data from assets...")
             withContext(Dispatchers.IO) {
                 try {
                     DreamSourceManager.sources.forEach { dreamDao.insertSource(it) }
@@ -342,7 +351,7 @@ class DreamRepository(
                     val assets = context.assets.list("") ?: emptyArray()
                     val files = assets.filter { it.endsWith(".json") && (it.startsWith("dreams_batch_") || it.startsWith("dreams_master_")) }
                     
-                    var groupIdCounter: Long = 500000
+                    var groupIdCounter: Long = 600000
                     files.forEach { fileName ->
                         val jsonString = context.assets.open(fileName).bufferedReader().use { it.readText() }
                         if (fileName == "dreams_master_desktop.json") {
@@ -353,18 +362,17 @@ class DreamRepository(
                             groupIdCounter = importLegacyFormat(jsonString, "dreamnet_base", groupIdCounter)
                         }
                     }
-                    Log.d("DreamNet", "Database import finished.")
+                    Log.d("DreamNet", "Initial prepopulation finished.")
                 } catch (e: Exception) {
                     Log.e("DreamNet", "PREPOPULATION FAILED", e)
                 }
             }
         }
         
-        // Github Sync
+        // Sync with Github
         val prefs = context.getSharedPreferences("dreamnet_prefs", Context.MODE_PRIVATE)
         val lastSync = prefs.getLong("last_github_sync", 0)
         if (System.currentTimeMillis() - lastSync > TimeUnit.DAYS.toMillis(7)) {
-            Log.d("DreamNet", "Syncing with GitHub...")
             importer.sync()
             prefs.edit().putLong("last_github_sync", System.currentTimeMillis()).apply()
         }
@@ -388,18 +396,9 @@ class DreamRepository(
             }
 
             if (ruText.isNotEmpty()) {
-                dreamDao.insertMeaning(DreamMeaning(
-                    dreamEntryId = entryId, 
-                    sourceId = sourceId ?: "external_desktop", 
-                    meaning = ruText, 
-                    language = "Русский"
-                ))
+                dreamDao.insertMeaning(DreamMeaning(dreamEntryId = entryId, sourceId = sourceId ?: "external_desktop", meaning = ruText, language = "Русский"))
             }
-            dreamDao.insertVariant(DreamVariant(
-                dreamEntryId = entryId, 
-                variant = cleanWord, 
-                normalizedVariant = normalizeWord(cleanWord)
-            ))
+            dreamDao.insertVariant(DreamVariant(dreamEntryId = entryId, variant = cleanWord, normalizedVariant = normalizeWord(cleanWord)))
         }
     }
 
@@ -468,17 +467,14 @@ class DreamRepository(
         for (i in 0 until jsonArray.length()) {
             val obj = jsonArray.getJSONObject(i)
             
-            // Пытаемся определить формат файла
             val wordRu = if (obj.has("word_ru")) obj.getString("word_ru") else obj.optString("word", "").trim()
             if (wordRu.isEmpty()) continue
             
-            // Создаем основную запись
             var entryRuId = dreamDao.getEntryByWord(wordRu, "Русский")?.entry?.id
             if (entryRuId == null) {
                 entryRuId = dreamDao.insertEntry(DreamEntry(word = wordRu, language = "Русский", linkedEntryGroupId = currentGroupId))
             }
             
-            // Если это формат 50000 снов (src0_ru, src1_ru...)
             if (obj.has("src0_ru")) {
                 val sourcesMapping = mapOf(
                     "src0_ru" to "miller", "src1_ru" to "vanga", "src2_ru" to "nostradamus",
@@ -487,12 +483,11 @@ class DreamRepository(
                 )
                 sourcesMapping.forEach { (key, srcId) ->
                     val m = obj.optString(key, "")
-                    if (m.isNotEmpty()) {
+                    if (m.isNotEmpty() && !m.contains("tradition", true)) {
                         dreamDao.insertMeaning(DreamMeaning(dreamEntryId = entryRuId, sourceId = srcId, meaning = m, language = "Русский"))
                     }
                 }
             } else {
-                // Старый формат (meaningRu)
                 dreamDao.insertMeaning(DreamMeaning(
                     dreamEntryId = entryRuId, 
                     sourceId = defaultSourceId, 
@@ -504,7 +499,6 @@ class DreamRepository(
                 ))
             }
             
-            // Генерация вариантов
             generateSearchVariants(wordRu, "Русский").forEach { v -> 
                 dreamDao.insertVariant(DreamVariant(dreamEntryId = entryRuId, variant = v, normalizedVariant = normalizeWord(v))) 
             }

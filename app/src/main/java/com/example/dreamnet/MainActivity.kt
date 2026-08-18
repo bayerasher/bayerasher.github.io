@@ -448,6 +448,14 @@ fun DreamNetProApp(
                     )
 
                     // ГРАФА: СОННИКИ ПО АВТОРАМ
+                    Text(
+                        text = "ТОЛКОВАНИЯ ПО СОННИКАМ:",
+                        color = Color.White.copy(alpha = 0.7f),
+                        style = MaterialTheme.typography.titleSmall,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(top = 8.dp, bottom = 8.dp)
+                    )
+
                     result.result.meanings.forEach { meaning ->
                         val source = viewModel.sources[meaning.sourceId]
                         InterpretationCard(
@@ -516,7 +524,7 @@ fun DreamNetProApp(
                             Spacer(Modifier.height(8.dp))
                             
                             Text(
-                                text = "ОБЩИЙ АНАЛИЗ:", 
+                                text = "ГЛУБОКИЙ АНАЛИЗ:",
                                 color = Color.Gray, 
                                 fontWeight = FontWeight.Bold, 
                                 fontSize = 11.sp
