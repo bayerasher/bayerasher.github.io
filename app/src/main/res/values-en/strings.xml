@@ -1,0 +1,84 @@
+﻿<resources>
+    <string name="app_name">DreamNet Pro</string>
+    <string name="title_describe_dream">Describe your dream</string>
+    <string name="button_history">Memory</string>
+    <string name="placeholder_describe_dream">Describe your dream...</string>
+    <string name="button_analyze">ANALYZE</string>
+    <string name="title_interpretation">Interpretation</string>
+    <string name="title_do">DO</string>
+    <string name="title_avoid">AVOID</string>
+    <string name="title_real_stories">CAME TRUE</string>
+
+    <string name="title_memory">Dream Memory</string>
+    <string name="desc_back">Back</string>
+    <string name="placeholder_search_history">Search dreams and symbols...</string>
+    <string name="stat_nightmares">Nightmares</string>
+    <string name="stat_top_symbol">Top symbol</string>
+    <string name="stat_total_dreams">Total dreams</string>
+    <string name="empty_history">History is empty</string>
+    <string name="date_recently">Recently</string>
+
+    <string name="error_no_internet">No internet connection. Please check.</string>
+    <string name="error_ai_unavailable">AI is currently unavailable. Check VPN.</string>
+    <string name="error_server_busy">Server is busy. Try again later.</string>
+    <string name="error_unknown">An error occurred. Please try again.</string>
+    <string name="error_no_result">Sorry, no interpretation found. Try changing the description.</string>
+    <string name="error_ai_format">AI returned invalid format. Please try again.</string>
+    <string name="no_famous_data">No suitable interpretation</string>
+
+    <string name="title_famous_dream_books">FAMOUS DREAM BOOKS</string>
+    <string name="loading_famous_books">Loading interpretations...</string>
+    <string name="no_famous_interpretations">No additional interpretations found.</string>
+
+    <string name="auth_email">Email</string>
+    <string name="auth_password">Password</string>
+    <string name="auth_sign_in">Sign In</string>
+    <string name="auth_register">Register</string>
+    <string name="auth_fill_fields">Please fill all fields</string>
+    <string name="auth_sign_out">Sign Out</string>
+    <string name="auth_continue_guest">Continue without saving</string>
+    <string name="auth_save_prompt_title">Save your dreams</string>
+    <string name="auth_save_prompt_desc">Create an account or sign in to save entries in your personal Dream Diary.</string>
+
+    <string name="diary_title">Dream Diary</string>
+    <string name="diary_empty">Diary is empty</string>
+    <string name="diary_new_entry">New Dream</string>
+    <string name="diary_edit_entry">Edit Entry</string>
+    <string name="diary_save">Save</string>
+    <string name="diary_delete">Delete</string>
+    <string name="diary_placeholder_title">Short title</string>
+    <string name="diary_placeholder_content">Describe your dream in detail...</string>
+    <string name="diary_label_date">Date</string>
+    <string name="diary_label_title">Title</string>
+    <string name="diary_label_content">Description</string>
+    <string name="diary_label_ai">DreamNet Analysis</string>
+    <string name="diary_save_button">Save to Diary</string>
+    <string name="diary_no_name">...</string>
+
+    <string name="label_ai_analysis">AI Analysis DreamNet</string>
+    <string name="label_source">Source</string>
+    <string name="label_book">Book</string>
+    <string name="label_level">Level</string>
+    <string name="level_primary">Primary Source</string>
+    <string name="level_trusted">Trusted Edition</string>
+    <string name="level_specialized">Specialized Site</string>
+    <string name="level_aggregator">Aggregator</string>
+    <string name="level_unverified">Secondary Source</string>
+    <string name="label_verification">Verification</string>
+    <string name="verification_high">High (Primary Source)</string>
+    <string name="verification_medium">Medium (Verified Edition)</string>
+    <string name="verification_low">Low (Secondary Source)</string>
+    <string name="no_interpretations_found">Accurate interpretation not found in verified sources.</string>
+    <string name="no_ai_analysis">Symbol analysis is temporarily unavailable.</string>
+    <string name="label_original_text">Original Text</string>
+    <string name="label_view_source">View Source</string>
+
+    <string name="support_btn_main">🙏 Support DreamNet</string>
+    <string name="support_title">Help DreamNet grow</string>
+    <string name="support_text">This button allows you to voluntarily support the app by watching an ad.\n\nYour support helps us keep working on DreamNet and add new features. 🙏</string>
+    <string name="support_btn_confirm">Support</string>
+    <string name="support_btn_later">Later</string>
+    <string name="support_thanks_title">🙏 Thank you!</string>
+    <string name="support_thanks_text">You are helping DreamNet grow and become better.</string>
+    <string name="support_error_unavailable">Ad is temporarily unavailable. Please try later.</string>
+</resources>

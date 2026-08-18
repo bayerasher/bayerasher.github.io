@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "953554722744",
+    "project_id": "dreamnet-950a0",
+    "storage_bucket": "dreamnet-950a0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:953554722744:android:639d308f3e649a5f0c794d",
+        "android_client_info": {
+          "package_name": "com.dreamnet.pro.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrzFTWLCI7us-hBsgjLkHr4BDcQ4MIb7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:953554722744:android:d92eeaebc3085dfc0c794d",
+        "android_client_info": {
+          "package_name": "com.example.dreamnet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrzFTWLCI7us-hBsgjLkHr4BDcQ4MIb7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

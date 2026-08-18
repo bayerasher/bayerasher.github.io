@@ -1,0 +1,41 @@
+[
+    {
+        "groupId": 60001,
+        "category": "food",
+        "concepts": [
+            {
+                "lang": "Русский",
+                "word": "яблоко",
+                "variants": ["яблоко", "яблоки", "яблока", "яблоку", "яблоком", "яблочке", "яблочко", "яблонька"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "meaning": "Видеть во сне спелые яблоки на дереве — означает, что настало время осуществления Ваших надежд."
+                    }
+                ]
+            },
+            {
+                "lang": "English",
+                "word": "apple",
+                "variants": ["apple", "apples", "apple-tree"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "meaning": "To see ripe apples on a tree, means that the time has come for your hopes to be realized."
+                    }
+                ]
+            },
+            {
+                "lang": "O'zbek",
+                "word": "olma",
+                "variants": ["olma", "olmani", "olmalar"],
+                "meanings": [
+                    {
+                        "sourceId": "dreamnet_internal",
+                        "meaning": "Olma ko'rish — umidlar ruyobi va yaxshilik belgisidir."
+                    }
+                ]
+            }
+        ]
+    }
+]

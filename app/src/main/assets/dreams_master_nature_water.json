@@ -1,0 +1,211 @@
+[
+    {
+        "groupId": 10001,
+        "category": "water",
+        "concepts": [
+            {
+                "lang": "Русский",
+                "word": "вода",
+                "variants": ["вода", "воды", "воду", "водой", "воде", "водичка"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "context": "чистая вода",
+                        "meaning": "Видеть во сне чистую воду — предвещает, что Вас ждет радостная перспектива благосостояния и удовольствий.",
+                        "adviceDo": "Используйте этот период для реализации смелых планов."
+                    },
+                    {
+                        "sourceId": "miller",
+                        "context": "грязная вода",
+                        "meaning": "Мутная вода — предвещает опасность или уныние, которое займет место радости.",
+                        "adviceDont": "Избегайте сомнительных сделок и поспешных выводов."
+                    }
+                ]
+            },
+            {
+                "lang": "English",
+                "word": "water",
+                "variants": ["water", "waters"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "context": "clear water",
+                        "meaning": "To dream of clear water, foretells that you will joyfully realize prosperity and pleasure."
+                    }
+                ]
+            },
+            {
+                "lang": "O'zbek",
+                "word": "suv",
+                "variants": ["suv", "suvni", "suvlar"],
+                "meanings": [
+                    {
+                        "sourceId": "dreamnet_internal",
+                        "meaning": "Toza suv ko'rish — farovonlik va quvonch belgisidir."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "groupId": 10002,
+        "category": "nature",
+        "concepts": [
+            {
+                "lang": "Русский",
+                "word": "море",
+                "variants": ["море", "моря", "морю", "морем", "моречко"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "context": "спокойное море",
+                        "meaning": "Слышать во сне меланхоличный шум моря — значит, что Вам суждена томительная и бесплодная жизнь, лишенная любви и дружеского участия.",
+                        "adviceDont": "Не замыкайтесь в себе, ищите общения."
+                    }
+                ]
+            },
+            {
+                "lang": "English",
+                "word": "sea",
+                "variants": ["sea", "seas", "ocean"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "meaning": "To hear the lonely sound of the sea, foretells that you will be destined to a weary and unfruitful life."
+                    }
+                ]
+            },
+            {
+                "lang": "O'zbek",
+                "word": "dengiz",
+                "variants": ["dengiz", "dengizni", "dengizlar"],
+                "meanings": [
+                    {
+                        "sourceId": "dreamnet_internal",
+                        "meaning": "Dengiz shovqinini eshitish — yolg'izlik yoki hayotdagi zerikarli davrdan darak beradi."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "groupId": 10003,
+        "category": "nature",
+        "concepts": [
+            {
+                "lang": "Русский",
+                "word": "река",
+                "variants": ["река", "реки", "реку", "рекой", "реке", "речка"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "context": "гладкая поверхность реки",
+                        "meaning": "Если Вам снится гладкая спокойная поверхность реки — значит, Вы скоро насладитесь самыми упоительными радостями, а Ваше благосостояние будет тешить Вас заманчивыми возможностями."
+                    }
+                ]
+            },
+            {
+                "lang": "English",
+                "word": "river",
+                "variants": ["river", "rivers"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "meaning": "If the water of the river is smooth and calm, you will soon enjoy great pleasures and prosperity."
+                    }
+                ]
+            },
+            {
+                "lang": "O'zbek",
+                "word": "daryo",
+                "variants": ["daryo", "daryoni", "daryolar"],
+                "meanings": [
+                    {
+                        "sourceId": "dreamnet_internal",
+                        "meaning": "Sokin daryo — yaqinlashib kelayotgan quvonch va farovonlik belgisidir."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "groupId": 10004,
+        "category": "nature",
+        "concepts": [
+            {
+                "lang": "Русский",
+                "word": "дождь",
+                "variants": ["дождь", "дождя", "дождю", "дождем", "дожди"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "context": "чистый дождь",
+                        "meaning": "Быть во сне под чистым дождем — означает, что Вас ждет радость и Ваше состояние будет увеличиваться."
+                    }
+                ]
+            },
+            {
+                "lang": "English",
+                "word": "rain",
+                "variants": ["rain", "rains", "raining"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "meaning": "To be in a clear rain, foretells joy and increase of fortune."
+                    }
+                ]
+            },
+            {
+                "lang": "O'zbek",
+                "word": "yomg'ir",
+                "variants": ["yomg'ir", "yomg'irni", "yomg'irlar"],
+                "meanings": [
+                    {
+                        "sourceId": "dreamnet_internal",
+                        "meaning": "Yomg'ir ostida qolish — boylik ortishi va xursandchilik ramzidir."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "groupId": 10005,
+        "category": "nature",
+        "concepts": [
+            {
+                "lang": "Русский",
+                "word": "огонь",
+                "variants": ["огонь", "огня", "огню", "огнем", "костер", "пламя"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "context": "не опаляющий огонь",
+                        "meaning": "Видеть огонь во сне — это хорошо, если Вы при этом сами не сгораете. Он обещает долгое процветание."
+                    }
+                ]
+            },
+            {
+                "lang": "English",
+                "word": "fire",
+                "variants": ["fire", "fires", "flame"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "meaning": "To dream of fire is favorable, if you do not get burned. It promises enduring prosperity."
+                    }
+                ]
+            },
+            {
+                "lang": "O'zbek",
+                "word": "olov",
+                "variants": ["olov", "olovni", "o't", "yong'in"],
+                "meanings": [
+                    {
+                        "sourceId": "dreamnet_internal",
+                        "meaning": "Olov ko'rish (agar kuymayotgan bo'lsangiz) — omad va boylik belgisidir."
+                    }
+                ]
+            }
+        ]
+    }
+]

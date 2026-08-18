@@ -1,0 +1,8 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /dreams/{dream} {
+      allow read: if true;    // Все могут искать сны
+      allow write: if false;   // Никто не может ничего менять или удалять через интернет
+    }
+  }
+}

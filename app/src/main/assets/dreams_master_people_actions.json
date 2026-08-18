@@ -1,0 +1,119 @@
+[
+    {
+        "groupId": 30001,
+        "category": "people",
+        "concepts": [
+            {
+                "lang": "Русский",
+                "word": "мать",
+                "variants": ["мать", "мама", "мамаша", "матери", "матерью", "маме"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "meaning": "Видеть во сне свою мать, появляющуюся в доме — предвещает обнадеживающие результаты в любом предпринимательстве."
+                    }
+                ]
+            },
+            {
+                "lang": "English",
+                "word": "mother",
+                "variants": ["mother", "mom", "mothers"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "meaning": "To see your mother in a dream, foretells that any enterprise will have encouraging results."
+                    }
+                ]
+            },
+            {
+                "lang": "O'zbek",
+                "word": "ona",
+                "variants": ["ona", "onani", "onalar"],
+                "meanings": [
+                    {
+                        "sourceId": "dreamnet_internal",
+                        "meaning": "Ona ko'rish — har qanday ishda omad va yaxshilik ramzidir."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "groupId": 30002,
+        "category": "people",
+        "concepts": [
+            {
+                "lang": "Русский",
+                "word": "отец",
+                "variants": ["отец", "папа", "папаша", "отца", "отцу", "отцом"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "meaning": "Видеть во сне своего отца — означает, что Вы с трудом избежите затруднения в делах, и Вам потребуется чьи-то мудрый совет."
+                    }
+                ]
+            },
+            {
+                "lang": "English",
+                "word": "father",
+                "variants": ["father", "dad", "fathers"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "meaning": "To dream of your father, signifies that you will find it difficult to avoid trouble in business."
+                    }
+                ]
+            },
+            {
+                "lang": "O'zbek",
+                "word": "ota",
+                "variants": ["ota", "otani", "otalar"],
+                "meanings": [
+                    {
+                        "sourceId": "dreamnet_internal",
+                        "meaning": "Ota ko'rish — dono maslahatga ehtiyojingiz borligini bildiradi."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "groupId": 40001,
+        "category": "actions",
+        "concepts": [
+            {
+                "lang": "Русский",
+                "word": "бежать",
+                "variants": ["бежать", "бег", "бегу", "бежим", "убегать", "побег"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "meaning": "Видеть во сне, что Вы бежите в группе других людей — означает, что Вы примете участие в каком-то веселом празднике."
+                    }
+                ]
+            },
+            {
+                "lang": "English",
+                "word": "run",
+                "variants": ["run", "running", "ran"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "meaning": "To dream that you are running in a group, foretells that you will participate in some festive occasion."
+                    }
+                ]
+            },
+            {
+                "lang": "O'zbek",
+                "word": "yugurish",
+                "variants": ["yugurish", "yugurmoq", "yugurib"],
+                "meanings": [
+                    {
+                        "sourceId": "dreamnet_internal",
+                        "meaning": "Boshqalar bilan birga yugurish — quvnoq bayramda ishtirok etishni anglatadi."
+                    }
+                ]
+            }
+        ]
+    }
+]

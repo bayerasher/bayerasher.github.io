@@ -1,0 +1,126 @@
+[
+    {
+        "groupId": 20001,
+        "category": "animals",
+        "concepts": [
+            {
+                "lang": "Русский",
+                "word": "собака",
+                "variants": ["собака", "собаки", "собаку", "собакой", "собаке", "пес", "песик", "пёс"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "context": "злая собака",
+                        "meaning": "Если Вам снится злая собака — ждите неудач и коварных поступков Ваших противников.",
+                        "adviceDont": "Будьте осторожны в общении с врагами."
+                    },
+                    {
+                        "sourceId": "miller",
+                        "context": "ласковая собака",
+                        "meaning": "Ласковая собака — сулит удачу и верных друзей."
+                    }
+                ]
+            },
+            {
+                "lang": "English",
+                "word": "dog",
+                "variants": ["dog", "dogs", "hound", "puppy"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "meaning": "If you dream of a vicious dog, you will have enemies and unalterable misfortune."
+                    }
+                ]
+            },
+            {
+                "lang": "O'zbek",
+                "word": "it",
+                "variants": ["it", "itni", "itlar", "kuchuk"],
+                "meanings": [
+                    {
+                        "sourceId": "dreamnet_internal",
+                        "meaning": "Yaxshi it — sodiq do'st; qopog'on it — dushmanlar hiylasidir."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "groupId": 20002,
+        "category": "animals",
+        "concepts": [
+            {
+                "lang": "Русский",
+                "word": "кошка",
+                "variants": ["кошка", "кошки", "кошку", "кошкой", "кот", "котенок", "котята", "котёнок"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "meaning": "Видеть во сне кошку — предвещает неудачу, если Вы не сможете убить ее или прогнать с глаз долой."
+                    }
+                ]
+            },
+            {
+                "lang": "English",
+                "word": "cat",
+                "variants": ["cat", "cats", "kitten", "kitty"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "meaning": "To dream of a cat, denotes ill luck if you do not succeed in killing it or driving it from your sight."
+                    }
+                ]
+            },
+            {
+                "lang": "O'zbek",
+                "word": "mushuk",
+                "variants": ["mushuk", "mushukni", "mushuklar", "mushukcha"],
+                "meanings": [
+                    {
+                        "sourceId": "dreamnet_internal",
+                        "meaning": "Mushuk ko'rish — muvaffaqiyatsizlik yoki hiyla belgisidir."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "groupId": 20003,
+        "category": "animals",
+        "concepts": [
+            {
+                "lang": "Русский",
+                "word": "змея",
+                "variants": ["змея", "змеи", "змею", "змеёй", "змей", "гадюка", "удав", "питон"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "meaning": "Если женщине снится, что ее кусает мертвая змея — значит, злость лицемерного друга заставит ее страдать."
+                    }
+                ]
+            },
+            {
+                "lang": "English",
+                "word": "snake",
+                "variants": ["snake", "snakes", "serpent", "viper"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "meaning": "To dream of snakes is a foreboding of evil in its various forms and stages."
+                    }
+                ]
+            },
+            {
+                "lang": "O'zbek",
+                "word": "ilon",
+                "variants": ["ilon", "ilonni", "ilonlar"],
+                "meanings": [
+                    {
+                        "sourceId": "dreamnet_internal",
+                        "meaning": "Ilon ko'rish — xavf, dushmanlik va kutilmagan yomonlik belgisidir."
+                    }
+                ]
+            }
+        ]
+    }
+]

@@ -1,0 +1,84 @@
+<resources>
+    <string name="app_name">DreamNet Pro</string>
+    <string name="title_describe_dream">Опишите сон</string>
+    <string name="button_history">Память</string>
+    <string name="placeholder_describe_dream">Опишите ваш сон...</string>
+    <string name="button_analyze">АНАЛИЗИРОВАТЬ</string>
+    <string name="title_interpretation">Толкование</string>
+    <string name="title_do">СДЕЛАЙТЕ</string>
+    <string name="title_avoid">ИЗБЕГАЙТЕ</string>
+    <string name="title_real_stories">СБЫЛОСЬ У ЛЮДЕЙ</string>
+
+    <string name="title_memory">Память снов</string>
+    <string name="desc_back">Назад</string>
+    <string name="placeholder_search_history">Поиск по снам и символам...</string>
+    <string name="stat_nightmares">Кошмары</string>
+    <string name="stat_top_symbol">Топ символ</string>
+    <string name="stat_total_dreams">Всего снов</string>
+    <string name="empty_history">История пока пуста</string>
+    <string name="date_recently">Недавно</string>
+
+    <string name="error_no_internet">Нет интернета. Проверьте соединение.</string>
+    <string name="error_ai_unavailable">ИИ недоступен. Проверьте VPN.</string>
+    <string name="error_server_busy">Сервер перегружен. Попробуйте позже.</string>
+    <string name="error_unknown">Произошла ошибка. Попробуйте снова.</string>
+    <string name="error_no_result">К сожалению, толкование не найдено. Попробуйте изменить описание.</string>
+    <string name="error_ai_format">ИИ прислал неверный формат данных. Попробуйте снова.</string>
+    <string name="no_famous_data">Нет подходящего толкования</string>
+
+    <string name="title_famous_dream_books">ТОЛКОВАНИЯ ПО ИЗВЕСТНЫМ СОННИКАМ</string>
+    <string name="loading_famous_books">Загрузка толкований...</string>
+    <string name="no_famous_interpretations">Дополнительные толкования не найдены.</string>
+
+    <string name="auth_email">Электронная почта</string>
+    <string name="auth_password">Пароль</string>
+    <string name="auth_sign_in">Войти</string>
+    <string name="auth_register">Зарегистрироваться</string>
+    <string name="auth_fill_fields">Пожалуйста, заполните все поля</string>
+    <string name="auth_sign_out">Выход</string>
+    <string name="auth_continue_guest">Продолжить без сохранения</string>
+    <string name="auth_save_prompt_title">Сохраните свои сны</string>
+    <string name="auth_save_prompt_desc">Создайте аккаунт или войдите, чтобы сохранять записи в личном Дневнике снов.</string>
+
+    <string name="diary_title">Дневник снов</string>
+    <string name="diary_empty">Дневник пока пуст</string>
+    <string name="diary_new_entry">Новый сон</string>
+    <string name="diary_edit_entry">Редактирование</string>
+    <string name="diary_save">Сохранить</string>
+    <string name="diary_delete">Удалить</string>
+    <string name="diary_placeholder_title">Кратко о чем сон</string>
+    <string name="diary_placeholder_content">Опишите ваш сон подробно...</string>
+    <string name="diary_label_date">Дата</string>
+    <string name="diary_label_title">Название</string>
+    <string name="diary_label_content">Описание сна</string>
+    <string name="diary_label_ai">Анализ DreamNet</string>
+    <string name="diary_save_button">Сохранить в дневник</string>
+    <string name="diary_no_name">...</string>
+
+    <string name="label_ai_analysis">AI-анализ DreamNet</string>
+    <string name="label_source">Источник</string>
+    <string name="label_book">Книга</string>
+    <string name="label_level">Уровень</string>
+    <string name="level_primary">Первоисточник</string>
+    <string name="level_trusted">Надежное издание</string>
+    <string name="level_specialized">Специализированный сайт</string>
+    <string name="level_aggregator">Агрегатор</string>
+    <string name="level_unverified">Вторичный источник</string>
+    <string name="label_verification">Проверка</string>
+    <string name="verification_high">Высокая (Первоисточник)</string>
+    <string name="verification_medium">Средняя (Проверенное издание)</string>
+    <string name="verification_low">Низкая (Вторичный источник)</string>
+    <string name="no_interpretations_found">Точное толкование в проверенных источниках не найдено.</string>
+    <string name="no_ai_analysis">Анализ символа временно недоступен.</string>
+    <string name="label_original_text">Оригинальный текст</string>
+    <string name="label_view_source">Перейти к источнику</string>
+
+    <string name="support_btn_main">🙏 Поддержать DreamNet</string>
+    <string name="support_title">Помогите DreamNet развиваться</string>
+    <string name="support_text">Эта кнопка позволяет добровольно поддержать приложение просмотром рекламы.\n\nВаша поддержка помогает нам продолжать работу и добавлять новые функции. 🙏</string>
+    <string name="support_btn_confirm">Поддержать</string>
+    <string name="support_btn_later">Позже</string>
+    <string name="support_thanks_title">🙏 Спасибо!</string>
+    <string name="support_thanks_text">Вы помогаете DreamNet развиваться и становиться лучше.</string>
+    <string name="support_error_unavailable">Реклама временно недоступна. Попробуйте позже.</string>
+</resources>

@@ -1,0 +1,84 @@
+﻿<resources>
+    <string name="app_name">DreamNet Pro</string>
+    <string name="title_describe_dream">Tushni tasvirlang</string>
+    <string name="button_history">Xotira</string>
+    <string name="placeholder_describe_dream">Tushingizni tasvirlang...</string>
+    <string name="button_analyze">TAHLIL QILISH</string>
+    <string name="title_interpretation">Ta\'bir</string>
+    <string name="title_do">BAJARING</string>
+    <string name="title_avoid">CHECHLANING</string>
+    <string name="title_real_stories">ODAMLARDA AMALGA OSHDI</string>
+
+    <string name="title_memory">Tushlar xotirasi</string>
+    <string name="desc_back">Orqaga</string>
+    <string name="placeholder_search_history">Tushlar va belgilar bo\'yicha qidiruv...</string>
+    <string name="stat_nightmares">Daxshatli tushlar</string>
+    <string name="stat_top_symbol">Top belgi</string>
+    <string name="stat_total_dreams">Jami tushlar</string>
+    <string name="empty_history">Tarix hali bo\'sh</string>
+    <string name="date_recently">Yaqinda</string>
+
+    <string name="error_no_internet">Internet yo\'q. Ulanishni tekshiring.</string>
+    <string name="error_ai_unavailable">SI mavjud emas. VPN-ni tekshiring.</string>
+    <string name="error_server_busy">Server band. Keyinroq qayta urinib ko\'ring.</string>
+    <string name="error_unknown">Xatolik yuz berdi. Iltimos, qayta urinib ko\'ring.</string>
+    <string name="error_no_result">Afsuski, ta\'bir topilmadi. Tasvirni o\'zgartirib ko\'ring.</string>
+    <string name="error_ai_format">SI noto\'g\'ri format yubordi. Iltimos, qayta urinib ko\'ring.</string>
+    <string name="no_famous_data">Munosib ta\'bir topilmadi</string>
+
+    <string name="title_famous_dream_books">MASHHUR TUSH TA\'BIRLARI BO\'YICHA</string>
+    <string name="loading_famous_books">Ta\'birlar yuklanmoqda...</string>
+    <string name="no_famous_interpretations">Qo\'shimcha ta\'birlar topilmadi.</string>
+
+    <string name="auth_email">Elektron pochta</string>
+    <string name="auth_password">Parol</string>
+    <string name="auth_sign_in">Kirish</string>
+    <string name="auth_register">Ro\'yxatdan o\'tish</string>
+    <string name="auth_fill_fields">Iltimos, barcha maydonlarni to\'ldiring</string>
+    <string name="auth_sign_out">Chiqish</string>
+    <string name="auth_continue_guest">Saqlamasdan davom ettirish</string>
+    <string name="auth_save_prompt_title">Tushlaringizni saqlang</string>
+    <string name="auth_save_prompt_desc">Shaxsiy tushlar kundaligida yozuvlarni saqlash uchun hisob yarating yoki kiring.</string>
+
+    <string name="diary_title">Tushlar kundaligi</string>
+    <string name="diary_empty">Kundalik hali bo\'sh</string>
+    <string name="diary_new_entry">Yangi tush</string>
+    <string name="diary_edit_entry">Tahrirlash</string>
+    <string name="diary_save">Saqlash</string>
+    <string name="diary_delete">O\'chirish</string>
+    <string name="diary_placeholder_title">Tush nima haqida qisqacha</string>
+    <string name="diary_placeholder_content">Tushingizni batafsil tasvirlang...</string>
+    <string name="diary_label_date">Sana</string>
+    <string name="diary_label_title">Sarlavha</string>
+    <string name="diary_label_content">Tush tavsifi</string>
+    <string name="diary_label_ai">DreamNet tahlili</string>
+    <string name="diary_save_button">Kundalikka saqlash</string>
+    <string name="diary_no_name">...</string>
+
+    <string name="label_ai_analysis">DreamNet SI tahlili</string>
+    <string name="label_source">Manba</string>
+    <string name="label_book">Kitob</string>
+    <string name="label_level">Daraja</string>
+    <string name="level_primary">Birinchi manba</string>
+    <string name="level_trusted">Ishonchli nashr</string>
+    <string name="level_specialized">Ixtisoslashgan sayt</string>
+    <string name="level_aggregator">Agregator</string>
+    <string name="level_unverified">Ikkinchi darajali manba</string>
+    <string name="label_verification">Tekshiruv</string>
+    <string name="verification_high">Yuqori (Birinchi manba)</string>
+    <string name="verification_medium">O\'rtacha (Tekshirilgan nashr)</string>
+    <string name="verification_low">Past (Ikkinchi darajali manba)</string>
+    <string name="no_interpretations_found">Tekshirilgan manbalarda aniq ta\'bir topilmadi.</string>
+    <string name="no_ai_analysis">Belgi tahlili vaqtinchalik mavjud emas.</string>
+    <string name="label_original_text">Asl matn</string>
+    <string name="label_view_source">Manbaga o\'tish</string>
+
+    <string name="support_btn_main">🙏 DreamNet’ni qo‘llab-quvvatlash</string>
+    <string name="support_title">DreamNet rivojlanishiga yordam bering</string>
+    <string name="support_text">Bu tugma reklama ko‘rish orqali ilovani ixtiyoriy ravishda qo‘llab-quvvatlash imkonini beradi.\n\nSizning qo‘llab-quvvatlashingiz bizga faoliyatimizni davom ettirish va yangi funksiyalar qo‘shishga yordam beradi. 🙏</string>
+    <string name="support_btn_confirm">Qo‘llab-quvvatlash</string>
+    <string name="support_btn_later">Keyinroq</string>
+    <string name="support_thanks_title">🙏 Rahmat!</string>
+    <string name="support_thanks_text">Siz DreamNet’ning rivojlanishi va yanada yaxshilanishiga yordam beryapsiz.</string>
+    <string name="support_error_unavailable">Reklama vaqtincha mavjud emas. Keyinroq urinib ko\'ring.</string>
+</resources>

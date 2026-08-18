@@ -1,0 +1,80 @@
+[
+    {
+        "groupId": 50001,
+        "category": "objects",
+        "concepts": [
+            {
+                "lang": "Русский",
+                "word": "деньги",
+                "variants": ["деньги", "деньги бумажные", "монеты", "денег", "денежкам", "валюта"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "meaning": "Найти во сне деньги — означает мелкие беспокойства, но большое счастье. Последуют перемены."
+                    }
+                ]
+            },
+            {
+                "lang": "English",
+                "word": "money",
+                "variants": ["money", "cash", "coins", "wealth"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "meaning": "To dream of finding money, signifies small worries, but great happiness."
+                    }
+                ]
+            },
+            {
+                "lang": "O'zbek",
+                "word": "pul",
+                "variants": ["pul", "pulni", "pullar", "tanga"],
+                "meanings": [
+                    {
+                        "sourceId": "dreamnet_internal",
+                        "meaning": "Pul topib olish — mayda tashvishlar, lekin katta quvonchni bildiradi."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "groupId": 50002,
+        "category": "objects",
+        "concepts": [
+            {
+                "lang": "Русский",
+                "word": "дом",
+                "variants": ["дом", "дома", "домик", "домище", "здание", "жилье"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "meaning": "Видеть во сне, что Вы не можете найти свой дом — значит, Вы полностью потеряете веру в честность людей."
+                    }
+                ]
+            },
+            {
+                "lang": "English",
+                "word": "house",
+                "variants": ["house", "houses", "home", "building"],
+                "meanings": [
+                    {
+                        "sourceId": "miller",
+                        "meaning": "To dream that you cannot find your house, you will completely lose faith in the honesty of people."
+                    }
+                ]
+            },
+            {
+                "lang": "O'zbek",
+                "word": "uy",
+                "variants": ["uy", "uyni", "uylar", "bino"],
+                "meanings": [
+                    {
+                        "sourceId": "dreamnet_internal",
+                        "meaning": "O'z uyini topa olmaslik — insonlarga bo'lgan ishonchni yo'qotish belgisidir."
+                    }
+                ]
+            }
+        ]
+    }
+]
