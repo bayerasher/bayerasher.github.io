@@ -268,7 +268,6 @@ class DreamRepository(
 
     private fun extractJson(raw: String): JSONObject? {
         try {
-            // Find first '{' and last '}'
             val start = raw.indexOf("{")
             val end = raw.lastIndexOf("}")
             if (start != -1 && end != -1 && end > start) {
@@ -333,7 +332,6 @@ class DreamRepository(
         val count = dreamDao.getEntryCount()
         Log.d("DreamNet", "Current DB entry count: $count")
         
-        // Ensure even existing databases get updated if they missed the large import
         if (count < 25000) { 
             Log.d("DreamNet", "Importing data from assets...")
             withContext(Dispatchers.IO) {
@@ -361,6 +359,15 @@ class DreamRepository(
                 }
             }
         }
+        
+        // Github Sync
+        val prefs = context.getSharedPreferences("dreamnet_prefs", Context.MODE_PRIVATE)
+        val lastSync = prefs.getLong("last_github_sync", 0)
+        if (System.currentTimeMillis() - lastSync > TimeUnit.DAYS.toMillis(7)) {
+            Log.d("DreamNet", "Syncing with GitHub...")
+            importer.sync()
+            prefs.edit().putLong("last_github_sync", System.currentTimeMillis()).apply()
+        }
     }
 
     private suspend fun importExternalFormat(jsonString: String) {
@@ -381,9 +388,18 @@ class DreamRepository(
             }
 
             if (ruText.isNotEmpty()) {
-                dreamDao.insertMeaning(DreamMeaning(dreamEntryId = entryId, sourceId = sourceId ?: "external_desktop", meaning = ruText, language = "Русский"))
+                dreamDao.insertMeaning(DreamMeaning(
+                    dreamEntryId = entryId, 
+                    sourceId = sourceId ?: "external_desktop", 
+                    meaning = ruText, 
+                    language = "Русский"
+                ))
             }
-            dreamDao.insertVariant(DreamVariant(dreamEntryId = entryId, variant = cleanWord, normalizedVariant = normalizeWord(cleanWord)))
+            dreamDao.insertVariant(DreamVariant(
+                dreamEntryId = entryId, 
+                variant = cleanWord, 
+                normalizedVariant = normalizeWord(cleanWord)
+            ))
         }
     }
 
@@ -451,14 +467,48 @@ class DreamRepository(
         val jsonArray = JSONArray(jsonString)
         for (i in 0 until jsonArray.length()) {
             val obj = jsonArray.getJSONObject(i)
-            val wordRu = obj.optString("word", "").trim()
+            
+            // Пытаемся определить формат файла
+            val wordRu = if (obj.has("word_ru")) obj.getString("word_ru") else obj.optString("word", "").trim()
             if (wordRu.isEmpty()) continue
             
+            // Создаем основную запись
             var entryRuId = dreamDao.getEntryByWord(wordRu, "Русский")?.entry?.id
             if (entryRuId == null) {
                 entryRuId = dreamDao.insertEntry(DreamEntry(word = wordRu, language = "Русский", linkedEntryGroupId = currentGroupId))
             }
-            dreamDao.insertMeaning(DreamMeaning(dreamEntryId = entryRuId, sourceId = defaultSourceId, meaning = obj.optString("meaningRu"), adviceDo = obj.optString("adviceDoRu"), adviceDont = obj.optString("adviceDontRu"), context = obj.optString("realStoriesRu"), language = "Русский"))
+            
+            // Если это формат 50000 снов (src0_ru, src1_ru...)
+            if (obj.has("src0_ru")) {
+                val sourcesMapping = mapOf(
+                    "src0_ru" to "miller", "src1_ru" to "vanga", "src2_ru" to "nostradamus",
+                    "src3_ru" to "tsvetkov", "src4_ru" to "islamic", "src5_ru" to "loff",
+                    "src6_ru" to "hasse", "src7_ru" to "meneghetti", "src8_ru" to "esoteric", "src9_ru" to "folk"
+                )
+                sourcesMapping.forEach { (key, srcId) ->
+                    val m = obj.optString(key, "")
+                    if (m.isNotEmpty()) {
+                        dreamDao.insertMeaning(DreamMeaning(dreamEntryId = entryRuId, sourceId = srcId, meaning = m, language = "Русский"))
+                    }
+                }
+            } else {
+                // Старый формат (meaningRu)
+                dreamDao.insertMeaning(DreamMeaning(
+                    dreamEntryId = entryRuId, 
+                    sourceId = defaultSourceId, 
+                    meaning = obj.optString("meaningRu"), 
+                    adviceDo = obj.optString("adviceDoRu"), 
+                    adviceDont = obj.optString("adviceDontRu"), 
+                    context = obj.optString("realStoriesRu"), 
+                    language = "Русский"
+                ))
+            }
+            
+            // Генерация вариантов
+            generateSearchVariants(wordRu, "Русский").forEach { v -> 
+                dreamDao.insertVariant(DreamVariant(dreamEntryId = entryRuId, variant = v, normalizedVariant = normalizeWord(v))) 
+            }
+
             currentGroupId++
         }
         return currentGroupId
