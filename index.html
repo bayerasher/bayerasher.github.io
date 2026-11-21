@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DreamNet — Мистическое Толкование и AI-Анализ Снов</title>
+
+    <!-- Firebase SDK -->
+    <script defer src="/__/firebase/12.16.0/firebase-app-compat.js"></script>
+    <script defer src="/__/firebase/12.16.0/firebase-analytics-compat.js"></script>
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-bg: #0A0B10;
+            --card-bg: rgba(22, 27, 34, 0.8);
+            --accent-purple: #D0BCFF;
+            --deep-purple: #9147FF;
+            --text-white: #F0F0F0;
+            --text-gray: #A0A0A0;
+            --glow-color: rgba(208, 188, 255, 0.15);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at 50% 30%, #1a1b26 0%, var(--primary-bg) 70%);
+        }
+
+        /* Анимированные звезды на фоне */
+        .stars {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 25px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px;
+            border-radius: 30px;
+            border: 1px solid rgba(208, 188, 255, 0.2);
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .lang-btn.active {
+            background: var(--accent-purple);
+            color: #000;
+            box-shadow: 0 4px 15px rgba(208, 188, 255, 0.3);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 0 60px;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo {
+            font-size: 4.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #FFF 0%, var(--accent-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 30px rgba(208, 188, 255, 0.4));
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-weight: 300;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, var(--accent-purple), var(--deep-purple));
+            color: #000;
+            padding: 18px 50px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.4s;
+            box-shadow: 0 8px 25px rgba(145, 71, 255, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(145, 71, 255, 0.5);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 60px 0;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 28px;
+            border: 1px solid rgba(208, 188, 255, 0.1);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at top right, var(--glow-color), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-purple);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .feature-card:hover::before { opacity: 1; }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 25px;
+            display: block;
+            filter: drop-shadow(0 0 10px rgba(208, 188, 255, 0.5));
+        }
+
+        .feature-card h3 {
+            margin: 0 0 15px;
+            font-size: 1.5rem;
+            color: var(--accent-purple);
+        }
+
+        .feature-card p {
+            margin: 0;
+            color: var(--text-gray);
+            font-size: 1rem;
+        }
+
+        .advantages {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 40px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .advantages h2 {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            background: linear-gradient(90deg, #FFF, var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .adv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .adv-item {
+            padding: 20px;
+            font-weight: 600;
+            color: var(--text-white);
+        }
+
+        .adv-item span {
+            display: block;
+            color: var(--accent-purple);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .google-play-section {
+            text-align: center;
+            padding: 100px 0;
+            background: radial-gradient(circle at center, rgba(145, 71, 255, 0.1), transparent 70%);
+        }
+
+        .google-play-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .download-btn {
+            background: #000;
+            border: 2px solid var(--accent-purple);
+            color: var(--accent-purple);
+            padding: 15px 40px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s;
+        }
+
+        .download-btn:hover {
+            background: var(--accent-purple);
+            color: #000;
+        }
+
+        footer {
+            padding: 60px 0;
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .logo { font-size: 3rem; }
+            .hero { padding: 60px 0 40px; }
+            .hero p { font-size: 1.1rem; }
+            .feature-card { padding: 30px; }
+            .google-play-section h2 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stars"></div>
+
+    <header>
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="setLang('ru')">Русский</button>
+            <button class="lang-btn" onclick="setLang('uz')">O‘zbek</button>
+            <button class="lang-btn" onclick="setLang('en')">English</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="logo">DreamNet</div>
+            <p id="hero-desc">Откройте тайны своего подсознания с помощью искусственного интеллекта и многовековой мудрости сонников</p>
+            <a href="https://play.google.com/store/apps/details?id=com.dreamnet.pro.app" target="_blank" class="cta-btn" id="start-btn">Начать</a>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <span class="feature-icon">🌙</span>
+                <h3 id="f1-title">Толкование снов</h3>
+                <p id="f1-desc">Огромная база данных классических сонников (Миллер, Ванга, Фрейд) в одном месте.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🤖</span>
+                <h3 id="f2-title">AI-анализ</h3>
+                <p id="f2-desc">Персонализированный анализ вашего сна нейросетью для понимания скрытых эмоций и символов.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📖</span>
+                <h3 id="f3-title">Дневник снов</h3>
+                <p id="f3-desc">Сохраняйте свои сновидения, чтобы отслеживать закономерности и изменения в вашей жизни.</p>
+            </div>
+        </section>
+
+        <section class="advantages">
+            <h2 id="adv-head">Преимущества</h2>
+            <div class="adv-grid">
+                <div class="adv-item"><span class="icon">✨</span><p id="a1">Толкование символов снов</p></div>
+                <div class="adv-item"><span class="icon">🧠</span><p id="a2">Персональный AI-анализ</p></div>
+                <div class="adv-item"><span class="icon">📜</span><p id="a3">История и дневник снов</p></div>
+                <div class="adv-item"><span class="icon">🌍</span><p id="a4">Многоязычная поддержка</p></div>
+            </div>
+        </section>
+
+        <section class="google-play-section">
+            <h2 id="gp-text">DreamNet Pro уже доступен в Google Play</h2>
+            <a href="https://play.google.com/store/apps/details?id=com.dreamnet.pro.app" target="_blank" class="download-btn" id="download-btn">Скачать приложение</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>DreamNet &copy; 2026</p>
+    </footer>
+
+    <script>
+        const translations = {
+            ru: {
+                heroDesc: "Откройте тайны своего подсознания с помощью искусственного интеллекта и многовековой мудрости сонников",
+                start: "Начать",
+                f1Title: "Толкование снов",
+                f1Desc: "Огромная база данных классических сонников (Миллер, Ванга, Фрейд) в одном месте.",
+                f2Title: "AI-анализ",
+                f2Desc: "Персонализированный анализ вашего сна нейросетью для понимания скрытых эмоций и символов.",
+                f3Title: "Дневник снов",
+                f3Desc: "Сохраняйте свои сновидения, чтобы отслеживать закономерности и изменения в вашей жизни.",
+                advHead: "Преимущества",
+                a1: "Толкование символов снов",
+                a2: "Персональный AI-анализ",
+                a3: "История и дневник снов",
+                a4: "Поддержка RU / UZ / EN",
+                gpText: "DreamNet Pro уже доступен в Google Play",
+                download: "Скачать приложение"
+            },
+            uz: {
+                heroDesc: "Sun'iy intellekt va ko'p asrlik tush ta'birlari donoligi yordamida ongingiz sirlarini oching",
+                start: "Boshlash",
+                f1Title: "Tushlar ta'biri",
+                f1Desc: "Klassik tush ta'birlari (Miller, Vanga, Freyd)ning ulkan ma'lumotlar bazasi bir joyda.",
+                f2Title: "AI-tahlil",
+                f2Desc: "Yashirin his-tuyg'ular va belgilarni tushunish uchun tushingizni neyrotarmoq orqali tahlil qilish.",
+                f3Title: "Tushlar kundaligi",
+                f3Desc: "Hayotingizdagi o'zgarishlar va qonuniyatlarni kuzatib borish uchun tushlaringizni saqlab boring.",
+                advHead: "Afzalliklar",
+                a1: "Tush ramzlari ta'biri",
+                a2: "Shaxsiy AI-tahlil",
+                a3: "Tushlar tarixi va kundaligi",
+                a4: "RU / UZ / EN tillarini qo'llab-quvvatlash",
+                gpText: "DreamNet Pro endi Google Play-da mavjud",
+                download: "Ilovani yuklab olish"
+            },
+            en: {
+                heroDesc: "Unlock the secrets of your subconscious with artificial intelligence and centuries of dream book wisdom",
+                start: "Get Started",
+                f1Title: "Dream Interpretation",
+                f1Desc: "A vast database of classic dream books (Miller, Vanga, Freud) all in one place.",
+                f2Title: "AI Analysis",
+                f2Desc: "Personalized neural network analysis of your dream to understand hidden emotions and symbols.",
+                f3Title: "Dream Diary",
+                f3Desc: "Save your dreams to track patterns and changes in your life over time.",
+                advHead: "Advantages",
+                a1: "Symbol interpretation",
+                a2: "Personal AI analysis",
+                a3: "History and dream diary",
+                a4: "RU / UZ / EN Support",
+                gpText: "DreamNet Pro is now on Google Play",
+                download: "Download App"
+            }
+        };
+
+        function setLang(lang) {
+            const t = translations[lang];
+            document.getElementById('hero-desc').innerText = t.heroDesc;
+            document.getElementById('start-btn').innerText = t.start;
+            document.getElementById('f1-title').innerText = t.f1Title;
+            document.getElementById('f1-desc').innerText = t.f1Desc;
+            document.getElementById('f2-title').innerText = t.f2Title;
+            document.getElementById('f2-desc').innerText = t.f2Desc;
+            document.getElementById('f3-title').innerText = t.f3Title;
+            document.getElementById('f3-desc').innerText = t.f3Desc;
+            document.getElementById('adv-head').innerText = t.advHead;
+            document.getElementById('a1').innerText = t.a1;
+            document.getElementById('a2').innerText = t.a2;
+            document.getElementById('a3').innerText = t.a3;
+            document.getElementById('a4').innerText = t.a4;
+            document.getElementById('gp-text').innerText = t.gpText;
+            document.getElementById('download-btn').innerText = t.download;
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.innerText.toLowerCase().includes(lang === 'ru' ? 'рус' : lang === 'uz' ? 'o‘z' : 'eng')) {
+                    btn.classList.add('active');
+                }
+            });
+
+            document.documentElement.lang = lang;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            try { firebase.analytics(); } catch (e) {}
+        });
+    </script>
+</body>
+</html>
